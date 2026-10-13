@@ -1,9 +1,5 @@
-You are GitHub Copilot in AGENT mode, operating in the CashForPhilly.com website workspace.
+This is a historical prompt and asset kit. The current website is in the existing GitHub repository therealvillar/cash-for-philly. Do not create or transfer to a replacement repository, provision Cloudflare resources, deploy, or change DNS as part of repository preparation.
 
-First read the ENTIRE local file `COPILOT_MASTER_PROMPT.md` and the accompanying `brand/design-tokens.json`, `brand/brand-theme-guide.md`, `asset-imports/README.md`, and `deployment/CLOUDFLARE_DEPLOYMENT_RUNBOOK.md`. The master prompt is the controlling implementation specification for this task.
+Use the root README.md and docs/deploy-cloudflare.md as the current source of truth for local checks and owner-controlled Cloudflare Pages preview setup. Keep the Astro site static, Pages Functions in root /functions, and route only /api/* to Functions. Never put runtime secrets in Git or public assets.
 
-Implement it rather than paraphrasing it: inventory the previously approved original 8-bit pixel-art assets in `asset-imports/`; build a production-quality Astro + TypeScript static website with Cloudflare Pages Functions, D1 lead capture and server-validated Turnstile; implement the required pages; write and run the tests; fix errors; provide a passing build; create the GitHub repo/commit/push only where account access and authorization exist; then carry the site through the Cloudflare Pages GIT-INTEGRATION deployment workflow where authenticated. Never create a Direct Upload project as the initial deployment.
-
-Preserve existing DNS records for Proton and Constant Contact. Do not make up branding assets, customer testimonials, business/legal facts, functional submissions, or a live deployment. If essential assets, verified business facts, GitHub write access or Cloudflare authorization are absent, state exactly what is blocked and prepare the remaining work completely.
-
-Start now by reporting a concise inventory and implementation plan, then create actual files and run commands. Do not stop at planning.
+Preserve separate seller, agent, and investor consent flows. Use only approved assets from cashforphilly-brand-kit/; restricted trademark illustrations are not approved. Production remains blocked on legal/contact approval, verified email and investor opt-in where applicable, isolated real D1/Turnstile configuration and end-to-end tests, asset-rights review, and tested DNS preservation.

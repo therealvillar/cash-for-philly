@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it, beforeAll } from 'vitest';
 
@@ -24,5 +24,7 @@ describe('built site route smoke checks', () => {
     expect(existsSync(join(dist, 'assets/brand/cashforphilly-original.png'))).toBe(true);
     expect(readFileSync(join(dist, 'sitemap.xml'), 'utf8')).toContain('https://cashforphilly.com/sell-your-house/');
     expect(JSON.parse(readFileSync(join(dist, '_routes.json'), 'utf8'))).toEqual({ version: 1, include: ['/api/*'], exclude: [] });
+    expect(existsSync(join(dist, '_worker.js'))).toBe(false);
+    expect(readdirSync(dist, { recursive: true }).map(String).some(path => path.includes('restricted'))).toBe(false);
   });
 });
