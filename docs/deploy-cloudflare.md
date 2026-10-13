@@ -13,7 +13,7 @@ This guide deploys the existing [`therealvillar/cash-for-philly`](https://github
 ## Connect the existing repository and verify a preview
 
 1. In Cloudflare Workers & Pages, create a Pages project by importing the existing Git repository `therealvillar/cash-for-philly`. Authorize the GitHub app only as needed for this repository. Do not initialize a Direct Upload project.
-2. Configure the repository root (`/`), the existing production branch (`main`), build command `npm run build`, and output directory `dist`. Enable pull-request preview deployments. Keep automatic production deployment disabled until all launch gates below are approved.
+2. Configure the repository root (`/`), the existing production branch (`main`), build command `npm ci && npm run build`, and output directory `dist`. Enable pull-request preview deployments. Keep automatic production deployment disabled until all launch gates below are approved.
 3. Set Node.js to 24 if the dashboard exposes a runtime version setting. Confirm the Pages build log uses the lockfile and succeeds; package `engines` specifies `>=24 <25`.
 4. Review the actual preview URL and confirm all generated pages, 404, sitemap, canonical URLs, and approved assets load. Check response headers against `public/_headers`, including CSP and noindex headers for privacy, terms, and thank-you pages. Verify the page routes stay static.
 5. Exercise `/api/leads`: `GET` must return 405; a POST with missing bindings/secret must return 503; invalid Turnstile must not write; a valid synthetic preview submission must return success only after D1 persistence; duplicate submission must return 409. Query and delete the synthetic row using authorized D1 access. Do not submit real personal data for testing.
