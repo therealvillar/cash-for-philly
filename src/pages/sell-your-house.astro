@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import LeadForm from '../components/LeadForm.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import { faqs } from '../data/faqs';
+---
+<BaseLayout title="Explore selling your Philadelphia property" description="Discuss a Philadelphia house, rental, or inherited property in its current condition. Share your situation through a secure inquiry form.">
+  <Hero eyebrow="FOR PROPERTY OWNERS" title="Let's talk about your property's next chapter." text="A house that needs work, a rental, an inherited place, or an uncertain timeline: start by telling us what you're navigating." image="/assets/actions/repair-tools.png" cta="Start an inquiry" href="#inquiry" />
+  <section><div class="container"><h2>Reasons to start a conversation</h2><div class="grid"><article class="card"><h3>As-is condition</h3><p>Tell us about repairs or updates you are weighing.</p></article><article class="card"><h3>Rentals and inherited property</h3><p>Share the context, even if you are still gathering information.</p></article><article class="card"><h3>Uncertain timing</h3><p>Discuss what a practical next step might look like for you.</p></article></div></div></section>
+  <section class="soft"><div class="container"><h2>What happens next</h2><ProcessSteps /></div></section>
+  <section id="inquiry"><div class="container"><LeadForm type="seller" /><p class="help">This is a request for a conversation, not a binding offer or a guarantee of any transaction outcome.</p></div></section>
+  <section class="soft"><div class="container narrow"><h2>Common questions</h2>{faqs.map(faq => <details class="card"><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</div></section>
+</BaseLayout>
+<style>details{margin-bottom:12px}summary{font-weight:700;cursor:pointer}details p{margin:16px 0 0}</style>

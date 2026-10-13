@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Contact CashForPhilly" description="Ask a one-to-one question about CashForPhilly using the secure contact form; it does not subscribe you to investor updates.">
+  <section class="soft"><div class="container narrow"><p class="eyebrow">Get in touch</p><h1>What would you like to discuss?</h1><p>Send a one-to-one inquiry below. For a property-specific conversation, use the <a href="/sell-your-house/">seller form</a> or <a href="/agents/">agent form</a>. Investor marketing updates require a separate opt-in.</p>{site.emailVerified && <p>Verified mailbox: <a href={`mailto:${site.email}`}>{site.email}</a></p>}{!site.emailVerified && <p class="notice">Direct email availability has not been verified. Please use the form once it is configured.</p>}</div></section>
+  <section><div class="container"><LeadForm type="contact" /></div></section>
+</BaseLayout>

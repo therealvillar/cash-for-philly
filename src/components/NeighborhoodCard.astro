@@ -1,0 +1,11 @@
+---
+import type { neighborhoods } from '../data/neighborhoods';
+type Neighborhood = typeof neighborhoods[number];
+interface Props { neighborhood: Neighborhood }
+const { neighborhood } = Astro.props;
+---
+<article class="card">
+  <img class="pixel" src={`/assets/neighborhoods/${neighborhood.image}.png`} width="256" height="256" alt={`Pixel-art illustration associated with ${neighborhood.name}`} loading="lazy" />
+  <h3>{neighborhood.name}</h3><p>{neighborhood.description}</p>
+</article>
+<style>.card{text-align:center;background:var(--blue-tint)}img{width:140px;height:140px}p{margin:0}</style>

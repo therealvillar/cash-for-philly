@@ -1,0 +1,12 @@
+---
+import { site } from '../data/site';
+---
+<footer class="dark">
+  <div class="container grid">
+    <div><strong>CashForPhilly</strong><p>Philly roots. Property options. Start with a conversation about your next move.</p></div>
+    <div><strong>Explore</strong><a href="/sell-your-house/">Sell a Property</a><a href="/how-it-works/">How It Works</a><a href="/agents/">For Agents</a><a href="/investors/">For Investors</a><a href="/areas/">Areas</a></div>
+    <div><strong>Information</strong><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy draft</a><a href="/terms/">Terms draft</a>{site.emailVerified && <a href={`mailto:${site.email}`}>{site.email}</a>}</div>
+  </div>
+  <div class="container fine">© {new Date().getFullYear()} CashForPhilly. Illustrations are editorial, not property listings or official neighborhood maps.</div>
+</footer>
+<style>footer{padding:56px 0 28px}footer .grid{grid-template-columns:2fr 1fr 1fr}footer a{color:white;display:block;margin:8px 0}footer strong{display:block;margin-bottom:16px}footer p{max-width:38ch}.fine{border-top:1px solid #ffffff55;margin-top:32px;padding-top:24px;font-size:.85rem}@media(max-width:700px){footer .grid{grid-template-columns:1fr}}</style>

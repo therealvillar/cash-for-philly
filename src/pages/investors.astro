@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const formUrl = import.meta.env.PUBLIC_CONSTANT_CONTACT_FORM_URL;
+const safeFormUrl = formUrl && (() => { try { const url = new URL(formUrl); return url.protocol === 'https:' && (url.hostname === 'lp.constantcontactpages.com' || url.hostname === 'lp.constantcontact.com') ? url.href : null; } catch { return null; } })();
+---
+<BaseLayout title="Philadelphia investor updates" description="Learn about future verified Philadelphia property opportunity updates and the status of the separate Constant Contact investor signup.">
+  <section class="soft"><div class="container narrow"><p class="eyebrow">FOR INVESTORS</p><h1>Interested in verified opportunity updates?</h1><p>This is a separate marketing signup, not a seller inquiry. We will only share opportunities when details are verified and an approved subscription channel is active. There are no active listings represented on this page.</p>
+    {safeFormUrl ? <p><a class="button" href={safeFormUrl} rel="noopener noreferrer">Open verified signup form</a></p> : <div class="notice" role="status"><strong>Investor signup not yet configured.</strong> No subscription is collected on this site until a verified Constant Contact form is connected. For a one-to-one question, use the <a href="/contact/">contact form</a>; it will not subscribe you.</div>}
+  </div></section>
+  <section><div class="container grid"><div><h2>A deliberate opt-in</h2><p>Investor updates require a separate, explicit subscription through Constant Contact. Submitting a property inquiry never adds anyone to a mailing list.</p></div><img class="pixel" src="/assets/actions/property-search.png" width="256" height="256" alt="" loading="lazy" /></div></section>
+</BaseLayout>

@@ -1,0 +1,5 @@
+# Constant Contact: investor opt-in
+
+Investor marketing subscriptions are **not configured** by default. The investor page visibly says so; a seller, agent or contact lead is never automatically subscribed, even when optional marketing interest is recorded in D1. Marketing interest is not proof of Constant Contact subscription.
+
+After owner approval, create a permission-based hosted signup form in Constant Contact with a working privacy link and legally required organization, address and unsubscribe controls. Test the actual form using consented synthetic data and confirm the resulting subscription in Constant Contact. Set `PUBLIC_CONSTANT_CONTACT_FORM_URL` to its verified HTTPS `lp.constantcontactpages.com` or `lp.constantcontact.com` hosted URL in the Pages build environment (preview first, then production); the site only links to this URL and never reports a signup success itself. If using the official API later, implement a new authenticated server-side integration; do not expose credentials to the browser. Preserve existing Constant Contact domain-authentication DNS and use campaign UTM links to site forms without personal data in query strings.

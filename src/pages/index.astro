@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import NeighborhoodCard from '../components/NeighborhoodCard.astro';
+import CTAButton from '../components/CTAButton.astro';
+import { neighborhoods } from '../data/neighborhoods';
+import { site } from '../data/site';
+---
+<BaseLayout title="Philadelphia property options" description="Explore a straightforward conversation about your Philadelphia property, its condition, timing, and possible next steps.">
+  <Hero eyebrow="PHILLY ROOTS. PROPERTY OPTIONS." title="Your Philly property. Your next move." text="Have a house, rental or inherited property on your mind? Let's discuss its condition, your timing and the numbers that matter to you. No renovation required just to start a conversation." image="/assets/actions/rowhome.png" cta={site.primaryCta} href={site.primaryHref} />
+  <section><div class="container"><p class="eyebrow">A practical starting point</p><h2>Start with your situation, not a sales pitch.</h2><div class="grid"><div class="card"><h3>Property as it is</h3><p>Share what you know about the property's condition. You do not need to make repairs to reach out.</p></div><div class="card"><h3>Your timing</h3><p>Whether you're ready to talk now or just weighing a decision, tell us what matters to you.</p></div><div class="card"><h3>A clear conversation</h3><p>An inquiry opens a discussion about options; it does not obligate you to sell.</p></div></div></div></section>
+  <section class="soft"><div class="container"><p class="eyebrow">How it works</p><h2>Three steps to a useful conversation</h2><ProcessSteps /><p><a href="/how-it-works/">Read more about the process →</a></p></div></section>
+  <section><div class="container"><p class="eyebrow">Philadelphia, illustrated</p><h2>Neighborhoods we talk about</h2><div class="grid">{neighborhoods.slice(0,3).map(neighborhood => <NeighborhoodCard neighborhood={neighborhood} />)}</div><p><a href="/areas/">Explore illustrated areas →</a></p></div></section>
+  <section class="dark"><div class="container narrow"><h2>Ready to talk about your property?</h2><p>Tell us what you're considering and how to reach you.</p><CTAButton href={site.primaryHref} label={site.primaryCta} /></div></section>
+</BaseLayout>

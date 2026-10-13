@@ -1,0 +1,9 @@
+---
+const steps = [
+  { title: 'Tell us about the property', text: 'Share a location and what you want us to know about its condition or your timing.', image: 'property-search' },
+  { title: 'Review your situation', text: 'We review the details you provide and reach out using your preferred contact method.', image: 'calculator' },
+  { title: 'Discuss next steps', text: 'Talk through realistic options. An inquiry is not a commitment to sell.', image: 'contract' }
+];
+---
+<div class="grid">{steps.map((step, i) => <article class="card"><img class="pixel" src={`/assets/actions/${step.image}.png`} width="256" height="256" alt="" loading="lazy" /><p class="eyebrow">Step {i + 1}</p><h3>{step.title}</h3><p>{step.text}</p></article>)}</div>
+<style>img{width:88px;height:88px;object-fit:contain}.card p:last-child{margin-bottom:0}</style>

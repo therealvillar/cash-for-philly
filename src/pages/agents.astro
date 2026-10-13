@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import LeadForm from '../components/LeadForm.astro';
+---
+<BaseLayout title="For agents and property partners" description="Agents and wholesalers can share Philadelphia property details for a separate partner conversation, without unverified commission promises.">
+  <Hero eyebrow="FOR AGENTS & WHOLESALERS" title="Have a property to discuss?" text="Share the location, your role and relevant property notes. We'll use the details to start a one-to-one conversation; no referral or compensation terms are implied." image="/assets/actions/contract.png" cta="Submit property details" href="#partner-form" />
+  <section><div class="container narrow"><h2>Keep the details practical.</h2><p>Describe the property's condition, timing and your relationship to it. Only share information you have permission to provide; do not submit another person's contact data without authorization.</p></div></section>
+  <section class="soft" id="partner-form"><div class="container"><LeadForm type="agent" /></div></section>
+</BaseLayout>

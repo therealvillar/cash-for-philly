@@ -1,0 +1,91 @@
+---
+interface Props { type: 'seller' | 'agent' | 'contact' }
+const { type } = Astro.props;
+const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const source = type === 'seller' ? '/sell-your-house/' : type === 'agent' ? '/agents/' : '/contact/';
+---
+<div class="form-wrap">
+  {!sitekey && <p class="notice" role="status">The inquiry form is not configured yet. Please check back later.</p>}
+  <form id="lead-form" data-source={source} data-type={type} hidden={!sitekey} novalidate>
+    <h2>{type === 'seller' ? 'Tell us about your property' : type === 'agent' ? 'Submit a property or start a conversation' : 'Send an inquiry'}</h2>
+    <p class="help">Fields marked * are required. Submitting an inquiry does not subscribe you to marketing.</p>
+    <div id="form-status" role="alert" aria-live="assertive" tabindex="-1"></div>
+    <div class="grid two">
+      <div class="field"><label for="lead-name">Name *</label><input id="lead-name" name="name" required maxlength="120" autocomplete="name" /></div>
+      <div class="field"><label for="lead-email">Email</label><input id="lead-email" name="email" type="email" maxlength="254" autocomplete="email" /></div>
+      <div class="field"><label for="lead-phone">Phone</label><input id="lead-phone" name="phone" type="tel" maxlength="30" autocomplete="tel" /></div>
+      <div class="field"><label for="lead-method">Preferred contact method *</label><select id="lead-method" name="preferred_contact" required><option value="">Choose one</option><option value="email">Email</option><option value="phone">Phone</option></select></div>
+    </div>
+    <p class="help">Provide at least one way to reach you. Choose a preferred method for which you provided details.</p>
+    {type !== 'contact' && <>
+      <div class="field"><label for="lead-location">Property street address or approximate location *</label><input id="lead-location" name="property_location" maxlength="240" required autocomplete="street-address" /></div>
+      <div class="grid two">
+        <div class="field"><label for="lead-city">City *</label><input id="lead-city" name="city" maxlength="80" required autocomplete="address-level2" /></div>
+        <div class="field"><label for="lead-zip">ZIP code *</label><input id="lead-zip" name="zip" inputmode="numeric" pattern="[0-9]{5}(-[0-9]{4})?" maxlength="10" required autocomplete="postal-code" /></div>
+      </div>
+      <div class="field"><label for="lead-property-type">Property type *</label><select id="lead-property-type" name="property_type" required><option value="">Choose one</option><option value="house">House</option><option value="rental">Rental</option><option value="multi-unit">Multi-unit</option><option value="land">Land</option><option value="other">Other</option><option value="not-specified">Not sure</option></select></div>
+    </>}
+    <div class="field"><label for="lead-message">{type === 'agent' ? 'Your role and property notes' : 'What would you like to discuss?'} *</label><textarea id="lead-message" name="message" maxlength="2000" required></textarea></div>
+    <div class="field check"><input id="lead-consent" type="checkbox" name="marketing_consent" /><label for="lead-consent">I would like occasional marketing email updates. This is optional and is not a subscription until a separate verified signup is configured. See the <a href="/privacy/">privacy draft</a>.</label></div>
+    <div class="trap" aria-hidden="true"><label for="lead-website">Website</label><input id="lead-website" name="website" tabindex="-1" autocomplete="off" /></div>
+    <div class="cf-turnstile" data-sitekey={sitekey} data-action="lead"></div>
+    <p class="help">This form uses Cloudflare Turnstile to protect against abuse. No inquiry is confirmed unless it is stored.</p>
+    <button class="button" type="submit">Send inquiry</button>
+  </form>
+</div>
+{sitekey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+<script>
+  const form = document.querySelector<HTMLFormElement>('#lead-form');
+  if (form) {
+    const status = form.querySelector<HTMLElement>('#form-status')!;
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const email = String(data.get('email') || '').trim();
+      const phone = String(data.get('phone') || '').trim();
+      const method = String(data.get('preferred_contact') || '');
+      if (!form.reportValidity() || (!email && !phone) || (method === 'email' && !email) || (method === 'phone' && !phone)) {
+        status.textContent = 'Please fill out all required fields and provide your preferred contact detail.';
+        status.focus();
+        return;
+      }
+      const token = String(data.get('cf-turnstile-response') || '');
+      if (!token) {
+        status.textContent = 'Please complete the verification challenge.';
+        status.focus();
+        return;
+      }
+      const button = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+      button.disabled = true;
+      status.textContent = 'Sending your inquiry…';
+      const payload: Record<string, string | boolean> = {
+        lead_type: form.dataset.type!, source_path: form.dataset.source!,
+        submission_key: crypto.randomUUID(), turnstile_token: token,
+        marketing_consent: data.has('marketing_consent')
+      };
+      for (const key of ['name','email','phone','preferred_contact','property_location','city','zip','property_type','message','website']) {
+        payload[key] = String(data.get(key) || '');
+      }
+      const params = new URLSearchParams(location.search);
+      for (const key of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term']) {
+        payload[key] = (params.get(key) || '').slice(0, 100);
+      }
+      try {
+        const response = await fetch('/api/leads', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload), credentials: 'same-origin'
+        });
+        const result = await response.json() as { message?: string; id?: string };
+        if (!response.ok || !result.id) throw Error(result.message || 'Unable to send your inquiry.');
+        sessionStorage.setItem('cashforphilly-receipt', result.id);
+        location.assign('/thank-you/');
+      } catch (error) {
+        status.textContent = error instanceof Error ? error.message : 'Unable to send your inquiry. Please try again.';
+        status.focus();
+        button.disabled = false;
+        (window as typeof window & { turnstile?: { reset(): void } }).turnstile?.reset();
+      }
+    });
+  }
+</script>
+<style>.form-wrap{max-width:800px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}#form-status:not(:empty){padding:12px;border-left:4px solid var(--gold-dark);background:var(--canvas);margin-bottom:20px}button:disabled{opacity:.65;cursor:wait}@media(max-width:600px){.two{grid-template-columns:1fr}}</style>
