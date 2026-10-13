@@ -1,0 +1,31 @@
+---
+import { site } from '../data/site';
+const links = [
+  ['Home','/'], ['Sell a Property','/sell-your-house/'], ['How It Works','/how-it-works/'],
+  ['For Agents','/agents/'], ['For Investors','/investors/'], ['About','/about/'], ['Contact','/contact/']
+];
+---
+<header>
+  <div class="container bar">
+    <a class="brand" href="/" aria-label="CashForPhilly home"><img src="/assets/brand/cashforphilly-horizontal-email.png" width="680" height="184" alt="CashForPhilly" /></a>
+    <nav aria-label="Primary navigation">
+      <details>
+        <summary>Menu</summary>
+        <div class="links">{links.map(([label, href]) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}</div>
+      </details>
+    </nav>
+    <a class="button nav-cta" href={site.primaryHref}>{site.primaryCta}</a>
+  </div>
+</header>
+<style>
+  header{border-top:5px solid var(--gold);border-bottom:1px solid var(--divider);background:white}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:92px}
+  .brand{display:block;flex:0 0 auto}.brand img{display:block;width:195px;height:auto}
+  nav details summary{display:none;cursor:pointer;min-height:44px;align-content:center}
+  .links{display:flex;align-items:center;gap:clamp(8px,1.2vw,20px);flex-wrap:wrap}
+  .links a{font-size:.9rem;font-weight:650;text-decoration:none;white-space:nowrap}
+  .links a:hover,.links a[aria-current=page]{text-decoration:underline}
+  .nav-cta{font-size:.875rem;white-space:nowrap}
+  @media(max-width:1100px){.nav-cta{display:none}}
+  @media(max-width:850px){.bar{min-height:76px}.brand img{width:160px}nav details summary{display:list-item;font-weight:700}nav details{position:relative}.links{display:none;position:absolute;right:0;top:100%;z-index:5;background:white;border:1px solid var(--divider);border-radius:8px;box-shadow:0 10px 20px #062d4d22;padding:16px;min-width:220px;flex-direction:column;align-items:stretch}nav details[open] .links{display:flex}.links a{padding:8px}}
+</style>

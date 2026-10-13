@@ -1,0 +1,10 @@
+---
+import CTAButton from './CTAButton.astro';
+interface Props { eyebrow: string; title: string; text: string; image?: string; cta?: string; href?: string }
+const { eyebrow, title, text, image, cta, href } = Astro.props;
+---
+<section class="hero dark"><div class="container hero-grid">
+  <div><p class="eyebrow">{eyebrow}</p><h1>{title}</h1><p class="intro">{text}</p>{cta && href && <CTAButton label={cta} href={href} />}</div>
+  {image && <img class="pixel" src={image} alt="" width="256" height="256" />}
+</div></section>
+<style>.hero{background:var(--navy);padding:clamp(52px,8vw,112px) 0}.hero-grid{display:grid;grid-template-columns:1.6fr 1fr;align-items:center;gap:32px}.hero .eyebrow{color:var(--gold)}.intro{font-size:clamp(1.1rem,2vw,1.25rem);max-width:54ch}.hero img{width:min(100%,320px);justify-self:center}@media(max-width:650px){.hero-grid{grid-template-columns:1fr}.hero img{width:180px;justify-self:start}}</style>
