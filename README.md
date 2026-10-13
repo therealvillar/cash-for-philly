@@ -4,7 +4,7 @@ Static Astro website with separate homeowner and agent inquiry funnels, an inves
 
 ## Local development
 
-Node 24: `npm ci`, `npm run dev`, `npm run check`, `npm run lint`, `npm run test`, `npm run build`, `npm run preview`. `astro preview` serves static HTML, **not** Pages Functions. Copy `.env.example` to `.env.local` for preview-only **public** widget values; keep runtime secrets in ignored `.dev.vars` or Cloudflare encrypted secrets, never in Git. Set `PUBLIC_DEPLOY_ENV=production` only when owner-approved production indexing is intended. Without a Turnstile sitekey, forms visibly say not configured.
+Node 24: `npm ci`, `npm run dev`, `npm run check`, `npm run lint`, `npm run test`, `npm run build`, `npm run preview`. `astro preview` serves static HTML, **not** Pages Functions; after building, `npm run preview:pages` runs the Pages Functions development server using the root `/functions` directory. Local missing bindings fail closed. Copy `.env.example` to `.env.local` for preview-only **public** widget values; keep runtime secrets in ignored `.dev.vars` or Cloudflare encrypted secrets, never in Git. Set `PUBLIC_DEPLOY_ENV=production` only when owner-approved production indexing is intended. Without a Turnstile sitekey, forms visibly say not configured.
 
 The selected originals are copied from `cashforphilly-brand-kit/` into `public/assets` without altering the logo. See [asset manifest](docs/asset-manifest.md) for exact sources, dimensions and rights review. Do not use restricted images.
 
@@ -17,4 +17,4 @@ The selected originals are copied from `cashforphilly-brand-kit/` into `public/a
 - [Operator-only lead retrieval, export and deletion](docs/lead-operations.md)
 - [Go-live blockers and legal review](docs/go-live-checklist.md)
 
-Edit central contact/business fields in `src/data/site.ts`, neighborhoods in `src/data/neighborhoods.ts`, and FAQs in `src/data/faqs.ts`. The public mailbox has **not** been verified. No Proton or Constant Contact DNS record should be modified for site deployment. This repository currently has a different remote from the proposed `therealvillar/cashforphilly-site`: do not repurpose it or initialize Cloudflare Direct Upload.
+The canonical repository is [`therealvillar/cash-for-philly`](https://github.com/therealvillar/cash-for-philly); its npm package name is `cash-for-philly`. Connect this existing repository to Pages—do not create or transfer to a replacement. Edit central contact/business fields in `src/data/site.ts`, neighborhoods in `src/data/neighborhoods.ts`, and FAQs in `src/data/faqs.ts`. The public mailbox has **not** been verified. No Proton or Constant Contact DNS record should be modified for site deployment.
