@@ -2,7 +2,7 @@
 
 | Gate | State | Requirement |
 | --- | --- | --- |
-| Static site, original supplied assets, unit/API tests, local build | PASS (local) | `npm ci`, check, lint, 14 API tests and build passed; 12 HTML pages and sitemap generated; local link/asset audit found no missing targets |
+| Static site, original supplied assets, unit/API tests, local build | PASS (local) | `npm ci`, check, lint, 29 tests (including 15 API tests and static-output checks) and build passed; 12 HTML pages and sitemap generated; local link/asset audit found no missing targets |
 | Mobile/keyboard/accessibility and Lighthouse targets | BLOCKED | Browser audits on real preview and production; record actual scores |
 | Cloudflare Pages Git-based project and PR preview | BLOCKED | Owner authorizes new repository and Cloudflare Git app |
 | Preview and production D1/Turnstile | BLOCKED | Create isolated databases/widgets, bind secrets, test persistence and failure paths |
