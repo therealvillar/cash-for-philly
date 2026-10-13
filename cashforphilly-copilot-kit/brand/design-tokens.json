@@ -1,0 +1,56 @@
+{
+  "brand": "CashForPhilly",
+  "logo": {
+    "master": "assets/logo/cashforphilly-original.png",
+    "email": "assets/logo/cashforphilly-horizontal-email.png",
+    "clear_space": "At least 16px around the logo lockup",
+    "restrictions": "Never recolor, stretch, regenerate lettering, or overlay with competing text"
+  },
+  "color": {
+    "navy": {"hex": "#093963", "usage": "Primary brand, text, primary CTA"},
+    "navy_deep": {"hex": "#062D4D", "usage": "Dark footer / section accents"},
+    "blue": {"hex": "#3D7CAD", "usage": "Secondary highlights and links"},
+    "blue_light": {"hex": "#B7E2ED", "usage": "Illustrated skyline and accents"},
+    "blue_tint": {"hex": "#EAF3F8", "usage": "Neighborhood block backgrounds"},
+    "gold": {"hex": "#EFC547", "usage": "Promotional CTA with navy text"},
+    "gold_dark": {"hex": "#B69745", "usage": "Accent shadows/borders, not small body text"},
+    "green": {"hex": "#6D993E", "usage": "Illustrated trees or sparing success accent"},
+    "paper": {"hex": "#FDFDFD", "usage": "Logo background/paper"},
+    "canvas": {"hex": "#F3F7FA", "usage": "Surrounding site background"},
+    "text": {"hex": "#172B3A", "usage": "Paragraph text"},
+    "muted": {"hex": "#4D6372", "usage": "Supporting text"}
+  },
+  "typography": {
+    "web_heading": "Inter or system sans, 36-56px H1 responsive, extra-bold",
+    "web_body": "Inter or system sans, 16-18px, line-height 1.55-1.65",
+    "display_graphics": "Press Start 2P, only where licensed and only in small decorative/static graphics"
+  },
+  "layout": {
+    "content_background": "#FFFFFF",
+    "card_radius_px": 12,
+    "button_radius_px": 8,
+    "button_min_height_px": 48,
+    "tap_target_min_px": 44,
+    "divider_color": "#D9E5EC",
+    "baseline_spacing_px": 8
+  },
+  "imagery": {
+    "icon_master_px": 256,
+    "icon_retina_px": 512,
+    "rendering": "Preserve alpha and aspect ratio; nearest-neighbor when enlarging true pixel art",
+    "alt_text": "Concise, functional, and never a duplicate of nearby text"
+  },
+  "editorial": {
+    "voice": "Local, informed, clear, non-pushy",
+    "primary_audience": "Homeowners exploring a property sale",
+    "primary_cta": "Explore selling options",
+    "primary_headline": "Your Philly property. Your next move.",
+    "eyebrow": "PHILLY ROOTS. PROPERTY OPTIONS.",
+    "trust": "Support all assertions; never invent metrics, credentials or reviews"
+  },
+  "compliance": {
+    "consent": "Marketing opt-in distinct, optional and unchecked by default",
+    "trademarks": "Avoid protected municipal, transit, stadium, team and landmark logos without permission",
+    "images": "Property illustrations are not photographs or proof of actual listings"
+  }
+}

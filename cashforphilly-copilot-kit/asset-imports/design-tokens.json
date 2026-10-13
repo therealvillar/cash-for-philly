@@ -1,0 +1,117 @@
+{
+  "brand": "CashForPhilly",
+  "logo": {
+    "master": "assets/logo/cashforphilly-original.png",
+    "email": "assets/logo/cashforphilly-horizontal-email.png",
+    "clear_space": "At least 16px around the email header lockup",
+    "restrictions": "Never recolor, stretch, regenerate lettering, or overlay with competing text"
+  },
+  "color": {
+    "navy": {
+      "hex": "#093963",
+      "usage": "Primary brand, text and primary CTA"
+    },
+    "navy_deep": {
+      "hex": "#062D4D",
+      "usage": "Dark footer/section accents"
+    },
+    "blue": {
+      "hex": "#3D7CAD",
+      "usage": "Secondary highlights and links"
+    },
+    "blue_light": {
+      "hex": "#B7E2ED",
+      "usage": "Illustrated skyline and accents"
+    },
+    "blue_tint": {
+      "hex": "#EAF3F8",
+      "usage": "Neighborhood block background"
+    },
+    "gold": {
+      "hex": "#EFC547",
+      "usage": "Primary marketing accent or promotional CTA"
+    },
+    "gold_dark": {
+      "hex": "#B69745",
+      "usage": "Gold shadows and borders; avoid for small body text"
+    },
+    "green": {
+      "hex": "#6D993E",
+      "usage": "Illustrated trees only, occasional success accent"
+    },
+    "paper": {
+      "hex": "#FDFDFD",
+      "usage": "Logo background / white paper"
+    },
+    "canvas": {
+      "hex": "#F3F7FA",
+      "usage": "Surrounding email background"
+    },
+    "text": {
+      "hex": "#172B3A",
+      "usage": "Long-form paragraph body"
+    },
+    "muted": {
+      "hex": "#4D6372",
+      "usage": "Supporting text"
+    }
+  },
+  "typography": {
+    "display_graphics": "Press Start 2P, only in static graphics and short headings",
+    "email_heading": "Arial or Helvetica, 800 weight",
+    "email_body": "Arial or Helvetica, 14-17px",
+    "website_heading": "Inter or system sans; do not depend on downloading font in email",
+    "line_height_body": "1.5-1.6"
+  },
+  "layout": {
+    "email_max_width_px": 640,
+    "email_background": "#F3F7FA",
+    "content_background": "#FFFFFF",
+    "content_padding_desktop_px": 34,
+    "content_padding_mobile_px": 22,
+    "card_gap_px": 12,
+    "button_min_height_px": 48,
+    "card_radius_px": 12,
+    "button_radius_px": 8,
+    "divider_color": "#D9E5EC",
+    "baseline_spacing_px": 8
+  },
+  "imagery": {
+    "icon_master_px": 256,
+    "icon_retina_px": 512,
+    "display_email_px": "96-112",
+    "rendering": "Keep transparency and aspect ratio; nearest-neighbor for enlarging true pixel art",
+    "alt_text": "Concise and functional, never duplicate the entire paragraph",
+    "labels": "Use real editable HTML text; image generator labels have errors"
+  },
+  "buttons": {
+    "primary": {
+      "background": "#093963",
+      "text": "#FFFFFF"
+    },
+    "promo": {
+      "background": "#EFC547",
+      "text": "#093963"
+    },
+    "min_tap_target": "44x44px",
+    "text_style": "Sentence case and action-first, 14-16px, bold"
+  },
+  "editorial": {
+    "voice": "Local, informed, clear, non-pushy",
+    "cta": "One primary action per email; 1-2 placements",
+    "headlines": "Keep short, benefit-focused, no invented numbers",
+    "trust": "Use clear process and verifiable claims; no manufactured social proof"
+  },
+  "email": {
+    "subject_chars_recommended": "35-55",
+    "preheader_chars_recommended": "45-90",
+    "image_coverage": "Approx 20-35% of visible newsletter layout; use live text for main copy",
+    "hero_message": "Text + one CTA above fold, not all-image layout"
+  },
+  "compliance": {
+    "subscription": "Use opt-in/permission-based lists; MLS source contact data is not automatic email marketing consent",
+    "footer": "Real physical mailing address and unsubscribe links; CC appends required footer",
+    "trademarks": "No SEPTA, Phillies, Flyers, Eagles, Rocky, LOVE sign usage without licensing/review",
+    "images": "Avoid maps/logos implying official endorsement."
+  }
+}
