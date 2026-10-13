@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import CTAButton from '../components/CTAButton.astro';
+---
+<BaseLayout title="How the property conversation works" description="Learn the simple process for sharing your property details, reviewing your situation, and discussing realistic next steps in Philadelphia.">
+  <section class="soft"><div class="container narrow"><p class="eyebrow">The process</p><h1>Know what to expect.</h1><p>We begin with what you tell us. You decide whether a conversation is useful; sending a form is not an agreement to sell.</p><CTAButton href="/sell-your-house/" label="Explore selling options" /></div></section>
+  <section><div class="container"><h2>From inquiry to conversation</h2><ProcessSteps /><p>Every property and timeline is different. We do not promise an offer, closing date, price or transaction terms based on a form submission.</p></div></section>
+</BaseLayout>

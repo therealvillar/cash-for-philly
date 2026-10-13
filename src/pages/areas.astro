@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NeighborhoodCard from '../components/NeighborhoodCard.astro';
+import { neighborhoods } from '../data/neighborhoods';
+---
+<BaseLayout title="Philadelphia neighborhood illustrations" description="Explore six original CashForPhilly pixel-art illustrations of Philadelphia neighborhoods; these are editorial art, not official maps or listings.">
+  <section class="soft"><div class="container narrow"><p class="eyebrow">Philadelphia, in pixels</p><h1>Every property has a local context.</h1><p>These original neighborhood illustrations reflect the campaign's Philly roots. They aren't boundary maps, available properties, or claims of service coverage.</p></div></section>
+  <section><div class="container grid">{neighborhoods.map(neighborhood => <NeighborhoodCard neighborhood={neighborhood} />)}</div></section>
+</BaseLayout>

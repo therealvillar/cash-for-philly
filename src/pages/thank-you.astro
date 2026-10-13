@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Inquiry status" description="Confirmation appears only after your inquiry is successfully stored." noindex>
+  <section><div class="container narrow"><h1>Inquiry status</h1><p id="receipt" role="status">Checking your submission status…</p><p><a href="/">Return home</a></p></div></section>
+</BaseLayout>
+<script>
+  const receipt = sessionStorage.getItem('cashforphilly-receipt');
+  const message = document.querySelector<HTMLElement>('#receipt');
+  if (message) message.textContent = receipt ? 'Your inquiry was received. Thank you for reaching out.' : 'No confirmed submission is available in this browser session. Please use an inquiry form to contact us.';
+  sessionStorage.removeItem('cashforphilly-receipt');
+</script>

@@ -29,8 +29,32 @@ const field = (data: Record<string, unknown>, key: string, limit: number) => {
 };
 const optional = (data: Record<string, unknown>, key: string, limit: number) =>
   data[key] === undefined || data[key] === '' ? '' : field(data, key, limit);
+async function readLimitedBody(request: Request): Promise<string | null> {
+  if (!request.body) return '';
+  const reader = request.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let size = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > 12_000) {
+        await reader.cancel();
+        return null;
+      }
+      chunks.push(value);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  const bytes = new Uint8Array(size);
+  let offset = 0;
+  for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
+  return new TextDecoder().decode(bytes);
+}
 
-export async function onRequestPost({ request, env }: PagesContext): Promise<Response> {
+async function handlePost({ request, env }: PagesContext): Promise<Response> {
   const url = new URL(request.url);
   if (request.headers.get('Origin') !== url.origin || request.headers.get('Content-Type')?.split(';')[0].trim() !== 'application/json') {
     return respond(403, 'Request origin or format is not allowed.');
@@ -39,8 +63,8 @@ export async function onRequestPost({ request, env }: PagesContext): Promise<Res
   if (Number(request.headers.get('Content-Length')) > 12_000) return respond(413, 'Submission is too large.');
   let data: Record<string, unknown>;
   try {
-    const body = await request.text();
-    if (body.length > 12_000) return respond(413, 'Submission is too large.');
+    const body = await readLimitedBody(request);
+    if (body === null) return respond(413, 'Submission is too large.');
     const parsed: unknown = JSON.parse(body);
     if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) throw Error('Invalid body');
     data = parsed as Record<string, unknown>;
@@ -113,6 +137,7 @@ export async function onRequestPost({ request, env }: PagesContext): Promise<Res
   return respond(201, 'Your inquiry was received.', id);
 }
 
-export function onRequest(): Response {
-  return respond(405, 'Method not allowed.');
+export function onRequest(context: PagesContext): Promise<Response> | Response {
+  if (context.request.method !== 'POST') return respond(405, 'Method not allowed.');
+  return handlePost(context);
 }
