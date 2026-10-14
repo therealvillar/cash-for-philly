@@ -6,11 +6,11 @@ The repository contains a static Astro site, root-level Pages Functions, `/api/*
 | --- | --- | --- |
 | Existing repository identity and preview-first deployment instructions | CODE PREPARED | Connect `therealvillar/cash-for-philly` to Pages; configure Git integration and review a real PR preview |
 | Static output, `/api/*` routing, CI and tests | LOCALLY VERIFIED | Verify generated `dist/`, headers, and API again on an actual Cloudflare PR preview |
-| Pages Function runtime bindings | BLOCKED | Configure and test separate real preview/production `LEADS_DB` bindings and Turnstile secrets/site keys |
-| Legal identity, notices, advertising disclosures, retention and contact details | BLOCKED | Owner/legal approval; populate only verified information |
+| Pages Function runtime bindings | CONFIGURED 2026-10-14 | Pages project `cash-for-philly` has separate preview/production D1 (`cash-for-philly-leads-preview`/`-prod`, migrated) and Turnstile widgets/secrets. Preview verified to reach the API (400 on empty body, 405 on GET); valid-token end-to-end test still needed |
+| Legal identity, notices, advertising disclosures, retention and contact details | OWNER DETAILS ADDED | Identity, address, phone and PA license entered in `src/data/site.ts`; privacy/terms drafts still need owner/legal approval |
 | Mailbox and investor opt-in | BLOCKED | Verify and monitor the public mailbox; approve and independently test the hosted investor opt-in and its verification flow if enabled |
 | Asset rights and final master logo | BLOCKED | Owner confirms provenance and commercial usage rights; restricted trademark illustrations remain excluded |
-| DNS, email and custom domain | BLOCKED | Save a full DNS baseline; protect Proton MX/SPF/DKIM/DMARC and Constant Contact authentication; test before/after mail and web behavior and rollback |
+| DNS, email and custom domain | BLOCKED | Save a full DNS baseline (see [dns-cutover-guide.md](dns-cutover-guide.md)); protect Proton MX/SPF/DKIM/DMARC and Constant Contact authentication; test before/after mail and web behavior and rollback |
 | Production lead flow | BLOCKED | End-to-end synthetic Turnstile verification, D1 persistence, invalid-token/failure behavior, authorized query and cleanup |
 | Accessibility, mobile, headers and performance | BLOCKED | Test the real preview and record actual outcomes; verify CSP/security headers and target browsers |
 
