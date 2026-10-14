@@ -6,8 +6,9 @@ import { site } from '../../src/data/site';
 describe('editorial data', () => {
   it('keeps the primary seller route and unverified contact state explicit', () => {
     expect(site.primaryHref).toBe('/sell-your-house/');
-    expect(site.emailVerified).toBe(false);
-    expect(site.legalIdentity).toBeNull();
+    expect(site.emailVerified).toBe(true);
+    expect(site.legalIdentity).toContain('Anthony Villar');
+    expect(site.licenseDisclosure).toContain('RS340087');
   });
   it('uses distinct original illustration names and substantive FAQ answers', () => {
     expect(new Set(neighborhoods.map(({ image }) => image)).size).toBe(neighborhoods.length);
