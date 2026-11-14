@@ -13,7 +13,7 @@
     "preview:pages": "wrangler pages dev dist"
   },
   "dependencies": {
-    "astro": "7.3.8"
+    "astro": "7.4.7"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
